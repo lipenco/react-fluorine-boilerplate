@@ -16,7 +16,7 @@ import App from './containers/app'
 import Counter from './components/Counter'
 
 const routes = (
-  <Route path='/' component={App}>
+  <Route path='*' component={App}>
     <IndexRoute component={Counter}/>
   </Route>
 )
