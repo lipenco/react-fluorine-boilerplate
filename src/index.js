@@ -9,6 +9,8 @@ import {
   browserHistory
 } from 'react-router'
 
+import './reset.css'
+
 import dispatcher from './dispatcher'
 import reducers from './reducers/index'
 
