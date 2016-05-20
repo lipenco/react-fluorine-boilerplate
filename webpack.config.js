@@ -5,6 +5,10 @@ var path = require('path')
 
 var PRODUCTION = process.env.NODE_ENV === 'production'
 
+if (!PRODUCTION) {
+  require('dotenv').config()
+}
+
 var replace = {};
 for (var key in process.env) {
   if (process.env.hasOwnProperty(key)) {
