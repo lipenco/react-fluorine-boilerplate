@@ -22,13 +22,13 @@ var server = new webpackDevServer(compiler, {
     chunkModules: false,
     colors: true
   }
-});
+})
 
-server.listen(port, "localhost", function (err) {
+server.listen(port, 'localhost', function (err) {
   if (err) {
-    throw err;
+    throw err
   }
 
-  console.log('☕️  Listening at http://localhost:' + port);
+  console.log('☕️  Listening at http://localhost:' + port)
 });
 
