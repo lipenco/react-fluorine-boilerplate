@@ -27,8 +27,8 @@ export default class Counter extends Component {
 
     return (
       <div>
-        <p>
-          Clicked: {counter} times
+        <p style={{ margin: 10 }}>
+          Clicked {counter} times.
         </p>
 
         <div>
