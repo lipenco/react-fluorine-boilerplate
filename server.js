@@ -5,12 +5,21 @@ var webpack = require('webpack')
 var webpackDevServer = require('webpack-dev-server')
 var config = require('./webpack.config')
 
-config.watch = true
-
 var port = process.env.PORT || 3000
+
+config.watch = true
+config.entry = [
+  'react-hot-loader/patch',
+  'webpack-dev-server/client?http://localhost:' + port,
+  'webpack/hot/only-dev-server'
+].concat(config.entry)
+
 var compiler = webpack(config)
 var server = new webpackDevServer(compiler, {
-  contentBase: 'www',
+  publicPath: '/',
+  contentBase: 'www/',
+
+  hot: true,
   historyApiFallback: true,
   noInfo: false,
   quiet: false,

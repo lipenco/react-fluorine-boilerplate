@@ -6,6 +6,7 @@
     "/node_modules/"
   ],
   "plugins": [
+    "react-hot-loader/babel",
     "transform-es2015-modules-commonjs",
     "transform-runtime"
   ]

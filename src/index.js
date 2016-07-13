@@ -1,6 +1,6 @@
 import React from 'react'
 import { render } from 'react-dom'
-import { Provider, combineReducers } from 'fluorine-lib'
+import { AppContainer } from 'react-hot-loader'
 
 import {
   Route,
@@ -10,24 +10,27 @@ import {
 } from 'react-router'
 
 import './reset.css'
-
-import dispatcher from './dispatcher'
-import reducers from './reducers/index'
-
 import App from './containers/app'
-import Counter from './components/counter'
 
-const routes = (
-  <Route path='*' component={App}>
-    <IndexRoute component={Counter}/>
-  </Route>
-)
+function entry() {
+  const root = document.getElementById('root')
 
-render((
-  <Provider
-    dispatcher={dispatcher}
-    observable={({ reduce }) => combineReducers(reducers)(reduce)}>
-    <Router history={browserHistory} routes={routes}/>
-  </Provider>
-), document.getElementById('root'))
+  render((
+    <AppContainer>
+      <App/>
+    </AppContainer>
+  ), root)
+}
+
+entry()
+
+if (module.hot) {
+  const path = './containers/app'
+  module.hot.accept('./containers/app', () => {
+    // NOTE: Circumvent webpack only considering modules accepted after a require
+    const NewApp = require('./containers/app')
+
+    entry()
+  })
+}
 

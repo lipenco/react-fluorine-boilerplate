@@ -1,5 +1,4 @@
 /*eslint-disable */
-
 var webpack = require('webpack')
 var path = require('path')
 
@@ -17,12 +16,17 @@ for (var key in process.env) {
 }
 
 var plugins = [ new webpack.DefinePlugin(replace) ]
+
 var productionPlugins = [
   new webpack.optimize.UglifyJsPlugin({
     compress: {
       warnings: false
     }
   })
+]
+
+var developmentPlugins = [
+  new webpack.HotModuleReplacementPlugin()
 ]
 
 var loaders = [{
@@ -48,11 +52,10 @@ module.exports = {
     failOnWarning: false,
     failOnError: false
   },
-  entry: [
-    './src/index'
-  ],
+  entry: [ './src/index' ],
   devtool: 'source-map',
-  plugins: plugins.concat(PRODUCTION ? productionPlugins : []),
+  plugins: plugins
+    .concat(PRODUCTION ? productionPlugins : developmentPlugins),
   module: {
     loaders: !PRODUCTION ? loaders : loaders.concat({
       test: /\.jsx?$/,
@@ -62,8 +65,7 @@ module.exports = {
   },
   output: {
     path: path.join(__dirname, 'www'),
-    filename: 'bundle.js',
-    publicPath: '/www/'
+    filename: 'bundle.js'
   }
 }
 
