@@ -15,7 +15,7 @@ import dispatcher from './dispatcher'
 import reducers from './reducers/index'
 
 import App from './containers/app'
-import Counter from './components/Counter'
+import Counter from './components/counter'
 
 const routes = (
   <Route path='*' component={App}>
