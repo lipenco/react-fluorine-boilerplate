@@ -16,7 +16,7 @@ config.entry = [
 
 var compiler = webpack(config)
 var server = new webpackDevServer(compiler, {
-  publicPath: '/',
+  publicPath: config.output.publicPath,
   contentBase: 'www/',
 
   hot: true,
